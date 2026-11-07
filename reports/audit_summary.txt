@@ -1,0 +1,35 @@
+== files per class ==
+      files  readable
+cls                  
+ai      538       538
+real    435       435
+== width / height / size (KB), readable images ==
+     width               height              size_kb               
+       min  median   max    min median   max     min median     max
+cls                                                                
+ai     225  1028.5  6000    135  800.0  4001    11.5  195.1  5494.3
+real   183   940.0  8495    158  720.0  7091    11.0  141.6  9956.4
+corrupt / unreadable files: 0
+exact duplicates (extra copies): 1
+identical files found in BOTH classes: 0
+== formats ==
+cls   format
+ai    JPEG      428
+      PNG       110
+real  JPEG      402
+      PNG        33
+dtype: int64
+== colour modes ==
+cls   mode
+ai    L         1
+      P        14
+      RGB     488
+      RGBA     35
+real  L         6
+      P         9
+      RGB     406
+      RGBA     14
+dtype: int64
+Empty DataFrame
+Columns: [path, error]
+Index: []
