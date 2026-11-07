@@ -1,0 +1,28 @@
+# slim = Debian with only what Python needs (~150 MB instead of ~1 GB)
+FROM python:3.12
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    TF_CPP_MIN_LOG_LEVEL=2
+
+WORKDIR /app
+
+# 1) dependencies first: this layer is rebuilt only when requirements change
+COPY requirements-web.txt .
+RUN pip install --no-cache-dir -r requirements-web.txt
+
+# 2) source code last: editing code only rebuilds these small layers
+COPY visionguard/ visionguard/
+COPY web/ web/
+
+# 3) never run as root
+RUN useradd --create-home --uid 10001 appuser
+USER appuser
+
+EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=4)" || exit 1
+
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "1", "--threads", "4", "--timeout", "120", "--access-logfile", "-", "web.app:create_app()"]

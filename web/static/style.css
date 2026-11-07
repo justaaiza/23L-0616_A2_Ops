@@ -1,0 +1,27 @@
+:root { --bg: #f5f6f8; --card: #fff; --text: #1d2330; --muted: #677085; --accent: #3355ff;
+        --ai: #c0392b; --real: #1e8449; --border: #e1e4ea; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); }
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: var(--text); }
+.topbar a { color: #fff; text-decoration: none; margin-left: 18px; }
+.brand { font-weight: 700; font-size: 1.15rem; margin-left: 0 !important; }
+.container { max-width: 1100px; margin: 32px auto; padding: 0 16px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; max-width: 640px; margin: 0 auto; }
+.card.wide { max-width: none; }
+.muted { color: var(--muted); font-size: .92rem; }
+form { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+input[type=file] { flex: 1; padding: 10px; border: 1px dashed var(--border); border-radius: 8px; }
+button, .button { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 10px 18px;
+                  font-size: 1rem; cursor: pointer; text-decoration: none; display: inline-block; }
+.verdict { font-size: 2.2rem; margin: 6px 0 14px; }
+.verdict.ai { color: var(--ai); } .verdict.real { color: var(--real); }
+.bar { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; }
+.bar div { height: 100%; background: var(--accent); }
+.caveat { background: #fff8e5; border: 1px solid #f0d58a; border-radius: 8px; padding: 12px 14px; margin: 18px 0; font-size: .92rem; }
+.error { color: var(--ai); font-weight: 600; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.pill { padding: 2px 8px; border-radius: 10px; color: #fff; font-size: .8rem; }
+.pill.ai { background: var(--ai); } .pill.real { background: var(--real); }
+footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 24px; }

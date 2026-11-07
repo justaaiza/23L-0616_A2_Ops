@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Result #{{ r.id }}{% endblock %}
+{% block content %}
+<section class="card">
+  <p class="muted">Result #{{ r.id }} · {{ r.filename }}</p>
+  <h1 class="verdict {{ 'ai' if r.label == 'AI-generated' else 'real' }}">{{ r.label }}</h1>
+  <div class="bar"><div style="width: {{ '%.1f'|format(r.confidence * 100) }}%"></div></div>
+  <p>Confidence <strong>{{ '%.1f'|format(r.confidence * 100) }}%</strong>
+     · P(AI) = {{ '%.3f'|format(r.prob_ai) }} · decision threshold {{ '%.3f'|format(r.threshold) }}</p>
+  <p class="muted">Model {{ r.model_name }} v{{ r.model_version }} · via {{ r.source }}
+     · {{ '%.0f'|format(r.latency_ms) }} ms · {{ r.created_at.strftime('%Y-%m-%d %H:%M:%S %Z') }}</p>
+  <div class="caveat"><strong>Please read:</strong> this verdict is a statistical estimate from a model trained on
+    about a thousand images. It can be wrong, especially for paintings, heavily edited or compressed photos, and images
+    from generators it has never seen. Do not treat it as proof that an image is fake or real.</div>
+  <a class="button" href="{{ url_for('index') }}">Check another image</a>
+</section>
+{% endblock %}
