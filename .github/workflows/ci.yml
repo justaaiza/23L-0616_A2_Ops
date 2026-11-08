@@ -1,3 +1,4 @@
+cat > .github/workflows/ci.yml <<'EOF'
 name: CI
 on:
   push:
@@ -28,5 +29,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build web image
-        run: docker build -f Dockerfile.web -t 23l-0616_a2_ops-web:ci .      - name: Build API image
+        run: docker build -f Dockerfile.web -t 23l-0616_a2_ops-web:ci .
+      - name: Build API image
         run: docker build -f Dockerfile.api -t 23l-0616_a2_ops-api:ci .
+EOF
+tail -n 6 .github/workflows/ci.yml
